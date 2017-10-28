@@ -392,6 +392,16 @@ user: "puppet"
 '
         it { is_expected.to contain_file('webhook.yaml').with_content(content) }
       end
+
+      context 'generate_types' do
+        let(:params) { { generate_types: true } }
+
+        it do
+          is_expected.to contain_file('webhook.yaml').with_content(
+            %r{^generate_types: true$}
+          )
+        end
+      end
     end
   end
 end
